@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -26,6 +28,13 @@ android {
             )
         }
     }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
+//    }
+//    kotlinOptions {
+//        jvmTarget = "18"
+//    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -33,13 +42,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-//    viewBinding {
-//        enable = true
+//    kotlin{
+//        jvmToolchain(8)
 //    }
+
     buildFeatures {
         viewBinding = true
     }
+
+
 }
 
 dependencies {
@@ -53,16 +64,18 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 //    retrofint
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+//    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+//    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
 //    picasso
-    implementation ("com.squareup.picasso:picasso:2.8")
+//    implementation ("com.squareup.picasso:picasso:2.8")
 
 //    NavComponent
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.1")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.1")
 
-//    DaggerHilt
+//    daggerhilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
 
 }
