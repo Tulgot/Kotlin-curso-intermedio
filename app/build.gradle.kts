@@ -21,21 +21,24 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL","\"https://newastro.vercel.app/\"")
+            resValue("string", "getbyname", "[Release]HoroscApp")
+        }
+
+        getByName("debug"){
+            isDebuggable = true
+            buildConfigField("String", "BASE_URL","\"https://newastro.vercel.app/\"")
+            resValue("string", "getbyname", "[Debug]HoroscApp")
         }
     }
-//    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
-//    }
-//    kotlinOptions {
-//        jvmTarget = "18"
-//    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -43,12 +46,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+//    no utilizar
 //    kotlin{
 //        jvmToolchain(8)
 //    }
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
 
@@ -65,15 +71,16 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 //    retrofint
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.3.1")
 
 //    picasso
-    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("com.squareup.picasso:picasso:2.8")
 
 //    NavComponent
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.1")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.1")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.1")
 
 //    daggerhilt
     implementation("com.google.dagger:hilt-android:2.48")
